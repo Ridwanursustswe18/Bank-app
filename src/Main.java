@@ -11,7 +11,7 @@ public class Main {
         int ch;
         do {
             System.out.println("\n ***Banking System Application***");
-            System.out.println("1. Create new account\n2. Display all account details\n3. Search by Account number\n4. Deposit the amount\n5. Withdraw the amount\n6. Exit");
+            System.out.println("1. Create new account\n2. Display all account details\n3. Search by Account number\n4. Deposit the amount\n5. Withdraw the amount\n6. Update account details\n7. Exit");
             System.out.println("Enter your choice: ");
             ch = sc.nextInt();
             switch (ch) {
@@ -92,11 +92,31 @@ public class Main {
                     }
                     break;
                 case 6:
+                    if (!accountsCreated) {
+                        System.out.println("Please create an account first.");
+                        break;
+                    }
+                    System.out.print("Enter Account No : ");
+                    ac_no = sc.next();
+
+                    found = false;
+                    for (int i = 0; i < C.length; i++) {
+                        found = C[i].search(ac_no);
+                        if (found) {
+                            C[i].updateDetails(C,ac_no,sc);
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        System.out.println("Search failed! Account doesn't exist..!!");
+                    }
+                    break;
+                case 7:
                     System.out.println("See you soon...");
                     break;
                 default:
                     System.out.println("Invalid choice!");
             }
-        } while (ch != 6);
+        } while (ch != 7);
     }
 }

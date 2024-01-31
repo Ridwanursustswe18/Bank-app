@@ -67,4 +67,17 @@ public class BankDetails {
         }
         return (false);
     }
+    public static void updateDetails(BankDetails[] accounts, String ac_no, Scanner sc) {
+        for (BankDetails account : accounts) {
+            if (account.accno.equals(ac_no)) {
+                System.out.println("Enter the type of account you want to change to");
+                account.acc_type = sc.next();
+                System.out.println("Account details updated successfully.");
+                return; // Exit loop if account found and updated
+            }
+        }
+        // Print message if account not found
+        System.out.println("Account with account number " + ac_no + " not found.");
+    }
+
 }
