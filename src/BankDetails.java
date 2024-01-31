@@ -13,8 +13,6 @@ public class BankDetails {
     }
     public void openAccount() {
 
-
-
         System.out.print("Enter Account No: ");
         accno = sc.next();
         System.out.print("Enter Account type: ");
@@ -23,14 +21,20 @@ public class BankDetails {
         name = sc.next();
         boolean validBalance = false;
         while (!validBalance) {
-            System.out.print("Enter Balance (initial balance should be greater than or equal to 500 ): ");
+            System.out.println("Enter Balance (initial balance should be greater than or equal to 500 for saving accounts, 1000 for current accounts, and 1500 for salary accounts): ");
             balance = sc.nextDouble();
-            if (balance >= 500) {
+            String accTypeLower = acc_type.toLowerCase(); // Convert account type to lowercase
+            if (accTypeLower.equals("saving") && balance >= 500) {
+                validBalance = true;
+            } else if (accTypeLower.equals("current") && balance >= 1000) {
+                validBalance = true;
+            } else if (accTypeLower.equals("salary") && balance >= 1500) {
                 validBalance = true;
             } else {
-                System.out.println("Initial balance should be greater than or equal to 500. Please enter a valid amount.");
+                System.out.println("Enter Balance (initial balance should be greater than or equal to 500 for saving accounts, 1000 for current accounts, and 1500 for salary accounts): ");
             }
         }
+
 
     }
     public void showAccount() {

@@ -46,7 +46,9 @@ public class Main {
                     String ac_no = sc.next();
                     boolean found = false;
                     for (int i = 0; i < C.length; i++) {
-                        found = C[i].search(ac_no);
+                        if(C[i]!=null) {
+                            found = C[i].search(ac_no);
+                        }
                         if (found) {
                             break;
                         }
@@ -64,7 +66,9 @@ public class Main {
                     ac_no = sc.next();
                     found = false;
                     for (int i = 0; i < C.length; i++) {
-                        found = C[i].search(ac_no);
+                        if(C[i]!=null) {
+                            found = C[i].search(ac_no);
+                        }
                         if (found) {
                             C[i].deposit();
                             break;
@@ -83,7 +87,9 @@ public class Main {
                     ac_no = sc.next();
                     found = false;
                     for (int i = 0; i < C.length; i++) {
-                        found = C[i].search(ac_no);
+                        if(C[i]!=null) {
+                            found = C[i].search(ac_no);
+                        }
                         if (found) {
                             C[i].withdrawal();
                             break;
@@ -103,7 +109,9 @@ public class Main {
 
                     found = false;
                     for (int i = 0; i < C.length; i++) {
-                        found = C[i].search(ac_no);
+                        if(C[i]!=null) {
+                            found = C[i].search(ac_no);
+                        }
                         if (found) {
                             C[i].updateDetails(C,ac_no,sc);
                             break;
@@ -123,7 +131,9 @@ public class Main {
 
                     found = false;
                     for (int i = 0; i < C.length; i++) {
-                        found = C[i].search(ac_no);
+                        if(C[i]!=null) {
+                            found = C[i].search(ac_no);
+                        }
                         if (found) {
                             C[i].deleteAccount(C,ac_no);
                             break;
