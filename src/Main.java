@@ -11,7 +11,7 @@ public class Main {
         int ch;
         do {
             System.out.println("\n ***Banking System Application***");
-            System.out.println("1. Create new account\n2. Display all account details\n3. Search by Account number\n4. Deposit the amount\n5. Withdraw the amount\n6. Update account details\n7. Exit");
+            System.out.println("1. Create new account\n2. Display all account details\n3. Search by Account number\n4. Deposit the amount\n5. Withdraw the amount\n6. Update account details\n7. delete account\n8. Exit");
             System.out.println("Enter your choice: ");
             ch = sc.nextInt();
             switch (ch) {
@@ -31,8 +31,10 @@ public class Main {
                         System.out.println("Please create an account first.");
                         break;
                     }
-                    for (int i = 0; i < n; i++) {
-                        C[i].showAccount();
+                    for (BankDetails account : C) {
+                        if (account != null) { // Skip null elements
+                            account.showAccount();
+                        }
                     }
                     break;
                 case 3:
@@ -112,11 +114,31 @@ public class Main {
                     }
                     break;
                 case 7:
+                    if (!accountsCreated) {
+                        System.out.println("Please create an account first.");
+                        break;
+                    }
+                    System.out.print("Enter Account No : ");
+                    ac_no = sc.next();
+
+                    found = false;
+                    for (int i = 0; i < C.length; i++) {
+                        found = C[i].search(ac_no);
+                        if (found) {
+                            C[i].deleteAccount(C,ac_no);
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        System.out.println("Search failed! Account doesn't exist..!!");
+                    }
+                    break;
+                case 8:
                     System.out.println("See you soon...");
                     break;
                 default:
                     System.out.println("Invalid choice!");
             }
-        } while (ch != 7);
+        } while (ch != 8);
     }
 }

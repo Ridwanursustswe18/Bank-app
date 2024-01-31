@@ -79,5 +79,26 @@ public class BankDetails {
         // Print message if account not found
         System.out.println("Account with account number " + ac_no + " not found.");
     }
+    public static void deleteAccount(BankDetails[] accounts, String accNo) {
+        System.out.println("Are you sure you want to delete this account "+accNo);
+        int index = -1;
+        for (int i = 0; i < accounts.length; i++) {
+            if (accounts[i].search(accNo)) {
+                index = i;
+                break;
+            }
+        }
+        if (index != -1) {
+            // Shift elements after the deleted account to the left
+            for (int i = index; i < accounts.length - 1; i++) {
+                accounts[i] = accounts[i + 1];
+            }
+            // Set the last element to null
+            accounts[accounts.length - 1] = null;
+            System.out.println("Account with account number " + accNo + " has been deleted.");
+        } else {
+            System.out.println("Account with account number " + accNo + " does not exist.");
+        }
+    }
 
 }
