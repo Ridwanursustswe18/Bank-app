@@ -52,16 +52,45 @@ public class BankDetails {
         balance = balance + amt;
     }
     //method to withdraw money  
-    public void withdrawal() {
+    public void withdrawal(BankDetails[] accounts,String ac_no) {
         long amt;
         System.out.println("Enter the amount you want to withdraw: ");
         amt = sc.nextLong();
-        if (balance >= amt) {
-            balance = balance - amt;
-            System.out.println("Balance after withdrawal: " + balance);
-        } else {
-            System.out.println("Your balance is less than " + amt + "\tTransaction failed...!!" );
+        String account_type=null;
+        for (BankDetails account : accounts) {
+            if (account.accno.equals(ac_no)) {
+                account_type = account.acc_type;
+                break;
+            }
         }
+            boolean allowed = true;
+            assert account_type != null;
+        if (account_type.equalsIgnoreCase("saving")) {
+            if (balance - amt < 500) {
+                allowed = false;
+                System.out.println("Insufficient balance for saving account (minimum balance: 500)");
+            }
+        } else if (account_type.equalsIgnoreCase("current")) {
+            if (balance - amt < 1000) {
+                allowed = false;
+                System.out.println("Insufficient balance for current account (minimum balance: 1000)");
+            }
+        } else if (account_type.equalsIgnoreCase("salary")) {
+            if (balance - amt < 1500) {
+                allowed = false;
+                System.out.println("Insufficient balance for salary account (minimum balance: 1500)");
+            }
+        }
+
+
+        if (allowed) {
+            balance -= amt;
+            System.out.println("Balance after withdrawal: " + balance);
+        }
+
+
+
+
     }
     //method to search an account number  
     public boolean search(String ac_no) {

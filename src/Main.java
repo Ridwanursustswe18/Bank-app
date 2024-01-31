@@ -91,7 +91,7 @@ public class Main {
                             found = C[i].search(ac_no);
                         }
                         if (found) {
-                            C[i].withdrawal();
+                            C[i].withdrawal(C,ac_no);
                             break;
                         }
                     }
