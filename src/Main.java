@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        BankDetails[] C = null; // Declare BankDetails array
+        CreateAccount[] C = null; // Declare BankDetails array
 
         boolean accountsCreated = false; // Flag to track if accounts have been created
         int n = 0; // Number of customers
@@ -19,9 +19,9 @@ public class Main {
                     // Create initial accounts
                     System.out.print("How many number of customers do you want to input? ");
                     n = sc.nextInt();
-                    C = new BankDetails[n]; // Initialize BankDetails array
+                    C = new CreateAccount[n]; // Initialize CreateAccount array
                     for (int i = 0; i < C.length; i++) {
-                        C[i] = new BankDetails();
+                        C[i] = new CreateAccount();
                         C[i].openAccount();
                     }
                     accountsCreated = true; // Set flag to true
@@ -31,9 +31,10 @@ public class Main {
                         System.out.println("Please create an account first.");
                         break;
                     }
-                    for (BankDetails account : C) {
+                    for (CreateAccount account : C) {
                         if (account != null) { // Skip null elements
-                            account.showAccount();
+                            ShowAccounts showAccounts = new ShowAccounts(account);
+                            showAccounts.showAccount();
                         }
                     }
                     break;
@@ -47,9 +48,12 @@ public class Main {
                     boolean found = false;
                     for (int i = 0; i < C.length; i++) {
                         if(C[i]!=null) {
-                            found = C[i].search(ac_no);
+                            SearchAccount searchAccount = new SearchAccount(C[i]);
+                            found = searchAccount.search(ac_no);
                         }
                         if (found) {
+                            ShowAccounts showAccounts = new ShowAccounts(C[i]);
+                            showAccounts.showAccount();
                             break;
                         }
                     }
@@ -66,14 +70,19 @@ public class Main {
                     ac_no = sc.next();
                     found = false;
                     for (int i = 0; i < C.length; i++) {
-                        if(C[i]!=null) {
-                            found = C[i].search(ac_no);
-                        }
-                        if (found) {
-                            C[i].deposit();
-                            break;
-                        }
+                    if(C[i]!=null) {
+                        SearchAccount searchAccount = new SearchAccount(C[i]);
+                        found = searchAccount.search(ac_no);
                     }
+                    if (found) {
+                        ShowAccounts showAccounts = new ShowAccounts(C[i]);
+                        showAccounts.showAccount();
+                        Scanner scanner = new Scanner(System.in);
+                        DepositMoney depositMoney = new DepositMoney(C[i],scanner);
+                        depositMoney.deposit();
+                        break;
+                    }
+                }
                     if (!found) {
                         System.out.println("Search failed! Account doesn't exist..!!");
                     }
@@ -83,15 +92,20 @@ public class Main {
                         System.out.println("Please create an account first.");
                         break;
                     }
-                    System.out.print("Enter Account No : ");
+                    System.out.print("Enter Account no. : ");
                     ac_no = sc.next();
                     found = false;
                     for (int i = 0; i < C.length; i++) {
                         if(C[i]!=null) {
-                            found = C[i].search(ac_no);
+                            SearchAccount searchAccount = new SearchAccount(C[i]);
+                            found = searchAccount.search(ac_no);
                         }
                         if (found) {
-                            C[i].withdrawal(C,ac_no);
+                            ShowAccounts showAccounts = new ShowAccounts(C[i]);
+                            showAccounts.showAccount();
+                            Scanner scanner = new Scanner(System.in);
+                            WithdrawMoney withdrawMoney = new WithdrawMoney(C[i],scanner);
+                            withdrawMoney.withdrawal(ac_no);
                             break;
                         }
                     }
@@ -104,16 +118,20 @@ public class Main {
                         System.out.println("Please create an account first.");
                         break;
                     }
-                    System.out.print("Enter Account No : ");
+                    System.out.print("Enter Account no. : ");
                     ac_no = sc.next();
-
                     found = false;
                     for (int i = 0; i < C.length; i++) {
                         if(C[i]!=null) {
-                            found = C[i].search(ac_no);
+                            SearchAccount searchAccount = new SearchAccount(C[i]);
+                            found = searchAccount.search(ac_no);
                         }
                         if (found) {
-                            C[i].updateDetails(C,ac_no,sc);
+                            ShowAccounts showAccounts = new ShowAccounts(C[i]);
+                            showAccounts.showAccount();
+                            Scanner scanner = new Scanner(System.in);
+                            UpdateAccount updateAccount = new UpdateAccount(C[i],scanner);
+                            updateAccount.updateDetails();
                             break;
                         }
                     }
@@ -126,17 +144,17 @@ public class Main {
                         System.out.println("Please create an account first.");
                         break;
                     }
-                    System.out.print("Enter Account No : ");
+                    System.out.print("Enter Account no. : ");
                     ac_no = sc.next();
-
                     found = false;
                     for (int i = 0; i < C.length; i++) {
                         if(C[i]!=null) {
-                            found = C[i].search(ac_no);
+                            SearchAccount searchAccount = new SearchAccount(C[i]);
+                            found = searchAccount.search(ac_no);
                         }
                         if (found) {
-                            C[i].deleteAccount(C,ac_no);
-                            break;
+                           DeleteAccount deleteAccount = new DeleteAccount(C[i]);
+                           deleteAccount.deleteAccount(C,ac_no);
                         }
                     }
                     if (!found) {
