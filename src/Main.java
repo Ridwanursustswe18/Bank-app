@@ -51,13 +51,13 @@ public class Main {
                     System.out.print("Enter account no. you want to search: ");
                     String ac_no = sc.next();
                     boolean found = false;
-                    for (int i = 0; i < C.length; i++) {
-                        if(C[i]!=null) {
-                            SearchAccount searchAccount = new SearchAccount(C[i]);
+                    for (CreateAccount account : C) {
+                        if (account != null) {
+                            SearchAccount searchAccount = new SearchAccount(account);
                             found = searchAccount.search(ac_no);
                         }
                         if (found) {
-                            ShowAccounts showAccounts = new ShowAccounts(C[i]);
+                            ShowAccounts showAccounts = new ShowAccounts(account);
                             showAccounts.showAccount();
                             break;
                         }
@@ -74,20 +74,20 @@ public class Main {
                     System.out.print("Enter Account no. : ");
                     ac_no = sc.next();
                     found = false;
-                    for (int i = 0; i < C.length; i++) {
-                    if(C[i]!=null) {
-                        SearchAccount searchAccount = new SearchAccount(C[i]);
-                        found = searchAccount.search(ac_no);
+                    for (CreateAccount account : C) {
+                        if (account != null) {
+                            SearchAccount searchAccount = new SearchAccount(account);
+                            found = searchAccount.search(ac_no);
+                        }
+                        if (found) {
+                            ShowAccounts showAccounts = new ShowAccounts(account);
+                            showAccounts.showAccount();
+                            Scanner scanner = new Scanner(System.in);
+                            DepositMoney depositMoney = new DepositMoney(account, scanner);
+                            depositMoney.deposit();
+                            break;
+                        }
                     }
-                    if (found) {
-                        ShowAccounts showAccounts = new ShowAccounts(C[i]);
-                        showAccounts.showAccount();
-                        Scanner scanner = new Scanner(System.in);
-                        DepositMoney depositMoney = new DepositMoney(C[i],scanner);
-                        depositMoney.deposit();
-                        break;
-                    }
-                }
                     if (!found) {
                         System.out.println("Search failed! Account doesn't exist..!!");
                     }
@@ -100,16 +100,16 @@ public class Main {
                     System.out.print("Enter Account no. : ");
                     ac_no = sc.next();
                     found = false;
-                    for (int i = 0; i < C.length; i++) {
-                        if(C[i]!=null) {
-                            SearchAccount searchAccount = new SearchAccount(C[i]);
+                    for (CreateAccount account : C) {
+                        if (account != null) {
+                            SearchAccount searchAccount = new SearchAccount(account);
                             found = searchAccount.search(ac_no);
                         }
                         if (found) {
-                            ShowAccounts showAccounts = new ShowAccounts(C[i]);
+                            ShowAccounts showAccounts = new ShowAccounts(account);
                             showAccounts.showAccount();
                             Scanner scanner = new Scanner(System.in);
-                            WithdrawMoney withdrawMoney = new WithdrawMoney(C[i],scanner);
+                            WithdrawMoney withdrawMoney = new WithdrawMoney(account, scanner);
                             withdrawMoney.withdrawal(ac_no);
                             break;
                         }
@@ -126,16 +126,16 @@ public class Main {
                     System.out.print("Enter Account no. : ");
                     ac_no = sc.next();
                     found = false;
-                    for (int i = 0; i < C.length; i++) {
-                        if(C[i]!=null) {
-                            SearchAccount searchAccount = new SearchAccount(C[i]);
+                    for (CreateAccount account : C) {
+                        if (account != null) {
+                            SearchAccount searchAccount = new SearchAccount(account);
                             found = searchAccount.search(ac_no);
                         }
                         if (found) {
-                            ShowAccounts showAccounts = new ShowAccounts(C[i]);
+                            ShowAccounts showAccounts = new ShowAccounts(account);
                             showAccounts.showAccount();
                             Scanner scanner = new Scanner(System.in);
-                            UpdateAccount updateAccount = new UpdateAccount(C[i],scanner);
+                            UpdateAccount updateAccount = new UpdateAccount(account, scanner);
                             updateAccount.updateDetails();
                             break;
                         }
@@ -152,14 +152,14 @@ public class Main {
                     System.out.print("Enter Account no. : ");
                     ac_no = sc.next();
                     found = false;
-                    for (int i = 0; i < C.length; i++) {
-                        if(C[i]!=null) {
-                            SearchAccount searchAccount = new SearchAccount(C[i]);
+                    for (CreateAccount account : C) {
+                        if (account != null) {
+                            SearchAccount searchAccount = new SearchAccount(account);
                             found = searchAccount.search(ac_no);
                         }
                         if (found) {
-                           DeleteAccount deleteAccount = new DeleteAccount(C[i]);
-                           deleteAccount.deleteAccount(C,ac_no);
+                            DeleteAccount deleteAccount = new DeleteAccount(account);
+                            deleteAccount.deleteAccount(C, ac_no);
                         }
                     }
                     if (!found) {
