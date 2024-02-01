@@ -12,7 +12,7 @@ public class DeleteAccount {
                 break;
             }
         }
-        if (index != -1) {
+
             // Shift elements after the deleted account to the left
             for (int i = index; i < accounts.length - 1; i++) {
                 accounts[i] = accounts[i + 1];
@@ -20,6 +20,6 @@ public class DeleteAccount {
             // Set the last element to null
             accounts[accounts.length - 1] = null;
             System.out.println("Account with account number " + accNo + " has been deleted.");
-        }
+
     }
 }
