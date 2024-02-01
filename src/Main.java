@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        CreateAccount[] C = null; // Declare BankDetails array
+        CreateAccount[] accountsList = null; // Declare BankDetails array
 
         boolean accountsCreated = false; // Flag to track if accounts have been created
         int n = 0; // Number of customers
@@ -19,10 +19,10 @@ public class Main {
                     // Create initial accounts
                     System.out.print("How many number of customers do you want to input? ");
                     n = sc.nextInt();
-                    C = new CreateAccount[n]; // Initialize CreateAccount array
-                    for (int i = 0; i < C.length; i++) {
-                        C[i] = new CreateAccount();
-                        C[i].openAccount();
+                    accountsList = new CreateAccount[n]; // Initialize CreateAccount array
+                    for (int i = 0; i < accountsList.length; i++) {
+                        accountsList[i] = new CreateAccount();
+                        accountsList[i].openAccount();
                     }
                     accountsCreated = true; // Set flag to true
                     break;
@@ -32,7 +32,7 @@ public class Main {
                         break;
                     }
                     boolean nullCheck = true;
-                    for (CreateAccount account : C) {
+                    for (CreateAccount account : accountsList) {
                         if (account != null) { // Skip null elements
                             ShowAccounts showAccounts = new ShowAccounts(account);
                             showAccounts.showAccount();
@@ -51,7 +51,7 @@ public class Main {
                     System.out.print("Enter account no. you want to search: ");
                     String ac_no = sc.next();
                     boolean found = false;
-                    for (CreateAccount account : C) {
+                    for (CreateAccount account : accountsList) {
                         if (account != null) {
                             SearchAccount searchAccount = new SearchAccount(account);
                             found = searchAccount.search(ac_no);
@@ -74,7 +74,7 @@ public class Main {
                     System.out.print("Enter Account no. : ");
                     ac_no = sc.next();
                     found = false;
-                    for (CreateAccount account : C) {
+                    for (CreateAccount account : accountsList) {
                         if (account != null) {
                             SearchAccount searchAccount = new SearchAccount(account);
                             found = searchAccount.search(ac_no);
@@ -100,7 +100,7 @@ public class Main {
                     System.out.print("Enter Account no. : ");
                     ac_no = sc.next();
                     found = false;
-                    for (CreateAccount account : C) {
+                    for (CreateAccount account : accountsList) {
                         if (account != null) {
                             SearchAccount searchAccount = new SearchAccount(account);
                             found = searchAccount.search(ac_no);
@@ -126,7 +126,7 @@ public class Main {
                     System.out.print("Enter Account no. : ");
                     ac_no = sc.next();
                     found = false;
-                    for (CreateAccount account : C) {
+                    for (CreateAccount account : accountsList) {
                         if (account != null) {
                             SearchAccount searchAccount = new SearchAccount(account);
                             found = searchAccount.search(ac_no);
@@ -152,14 +152,14 @@ public class Main {
                     System.out.print("Enter Account no. : ");
                     ac_no = sc.next();
                     found = false;
-                    for (CreateAccount account : C) {
+                    for (CreateAccount account : accountsList) {
                         if (account != null) {
                             SearchAccount searchAccount = new SearchAccount(account);
                             found = searchAccount.search(ac_no);
                         }
                         if (found) {
                             DeleteAccount deleteAccount = new DeleteAccount(account);
-                            deleteAccount.deleteAccount(C, ac_no);
+                            deleteAccount.deleteAccount(accountsList, ac_no);
                         }
                     }
                     if (!found) {

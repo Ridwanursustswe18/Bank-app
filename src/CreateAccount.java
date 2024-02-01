@@ -26,7 +26,24 @@ public class CreateAccount {
     private String name;
 
     public void setAcc_type(String acc_type) {
-        this.acc_type = acc_type;
+        boolean validType = false;
+        while (!validType) {
+            System.out.println("You can only choose from saving, current, and salary type");
+            String accTypeLower = acc_type.toLowerCase(); // Convert account type to lowercase
+            if (accTypeLower.equals("saving") || accTypeLower.equals("current") || accTypeLower.equals("salary")) {
+                validType = true;
+            } else {
+                System.out.println("Please enter a valid type of account");
+                break;
+            }
+
+        }
+        if(validType) {
+            this.acc_type = acc_type;
+            System.out.println("Your accounts type has been changed ");
+        }else {
+            System.out.println("account update failed");
+        }
     }
 
     private String acc_type;
@@ -46,7 +63,23 @@ public class CreateAccount {
         System.out.print("Enter Account No: ");
         accno = sc.next();
         System.out.print("Enter Account type: ");
-        acc_type = sc.next();
+        boolean validType = false;
+        while (!validType){
+            System.out.println("You can only choose from saving,current and salary type");
+            acc_type = sc.next();
+            String accTypeLower = acc_type.toLowerCase(); // Convert account type to lowercase
+            if (accTypeLower.equals("saving")) {
+                validType = true;
+            } else if (accTypeLower.equals("current")) {
+                validType = true;
+            } else if (accTypeLower.equals("salary")) {
+                validType = true;
+            }else {
+                System.out.println("please enter valid type of account");
+            }
+
+        }
+
         System.out.print("Enter Name: ");
         name = sc.next();
         boolean validBalance = false;
@@ -61,7 +94,7 @@ public class CreateAccount {
             } else if (accTypeLower.equals("salary") && balance >= 1500) {
                 validBalance = true;
             } else {
-                System.out.println("Enter Balance (initial balance should be greater than or equal to 500 for saving accounts, 1000 for current accounts, and 1500 for salary accounts): ");
+                System.out.println("initial balance should be greater than or equal to 500 for saving accounts, 1000 for current accounts, and 1500 for salary accounts: ");
             }
         }
 
@@ -69,30 +102,5 @@ public class CreateAccount {
     }
 
 
-
-
-
-
-//    public static void deleteAccount(BankDetails[] accounts, String accNo) {
-//        System.out.println("Are you sure you want to delete this account "+accNo);
-//        int index = -1;
-//        for (int i = 0; i < accounts.length; i++) {
-//            if (accounts[i].search(accNo)) {
-//                index = i;
-//                break;
-//            }
-//        }
-//        if (index != -1) {
-//            // Shift elements after the deleted account to the left
-//            for (int i = index; i < accounts.length - 1; i++) {
-//                accounts[i] = accounts[i + 1];
-//            }
-//            // Set the last element to null
-//            accounts[accounts.length - 1] = null;
-//            System.out.println("Account with account number " + accNo + " has been deleted.");
-//        } else {
-//            System.out.println("Account with account number " + accNo + " does not exist.");
-//        }
-//    }
 
 }
