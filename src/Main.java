@@ -31,11 +31,16 @@ public class Main {
                         System.out.println("Please create an account first.");
                         break;
                     }
+                    boolean nullCheck = true;
                     for (CreateAccount account : C) {
                         if (account != null) { // Skip null elements
                             ShowAccounts showAccounts = new ShowAccounts(account);
                             showAccounts.showAccount();
+                            nullCheck = false;
                         }
+                    }
+                    if(nullCheck){
+                        System.out.println("Please create an account first.");
                     }
                     break;
                 case 3:
