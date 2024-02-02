@@ -16,5 +16,7 @@
 # how the application works
 - First the operator has to create accounts otherwise he cannot use any other functions.
 - Then he can use all other functions.
-- When creating account operator has to deposit an certain amount of money for different type of account. For example : saving 500 is minimum and so on.
+- When creating account operator has to deposit a certain amount of money for different type of account. For example : saving 500 is minimum and so on.
 - When Withdrawing he has to keep certain amount of money for specific accounts
+- When updating account type he has to have a certain amount of money to switch to other account type otherwise he cannot change it.
+- When he will input the account type he can only choose from saving,current and salary.This validation check also enforced.
